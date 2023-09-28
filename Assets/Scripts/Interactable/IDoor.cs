@@ -9,6 +9,8 @@ public class IDoor : MonoBehaviour, IInteraction
     [SerializeField] bool lockedDoor;
     [SerializeField] string lockID;
 
+    bool open = false;
+
     private Animator animC;
 
     //player has key bool
@@ -51,12 +53,31 @@ public class IDoor : MonoBehaviour, IInteraction
         {
             //open the door by activating animation or some bullshit idk
             Debug.Log("The door opens");
-            animC.Play("Base Layer.DoorOpen");
+            if (!open)
+            {
+                animC.Play("Base Layer.DoorOpen");
+                open = true;
+            }
+            else
+            {
+                animC.Play("Base Layer.DoorClose");
+                open = false;
+            }
         }
         else if (!lockedDoor)
         {
             //open the door by activating animation or some bullshit idk
             Debug.Log("The door opens");
+            if (!open)
+            {
+                animC.Play("Base Layer.DoorOpen");
+                open = true;
+            }
+            else
+            {
+                animC.Play("Base Layer.DoorClose");
+                open = false;
+            }
         }
         else
         {

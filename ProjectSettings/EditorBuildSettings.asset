@@ -8,4 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Managers.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
+  - enabled: 1
+    path: Assets/Scenes/Player.unity
+    guid: 95d46adcb3e831047bab041b6e24b217
+  - enabled: 1
+    path: Assets/Scenes/Interactables.unity
+    guid: 39018656c8965e64993c9d19618d0071
+  - enabled: 1
+    path: Assets/Scenes/HUDandUI.unity
+    guid: 9ab4ecb93c23b4648958c7b7591043c3
+  - enabled: 1
+    path: Assets/Scenes/Environment.unity
+    guid: e560599ae66aa3f40b2ba9609285bb29
+  - enabled: 1
+    path: Assets/Scenes/EnemyAI.unity
+    guid: d335b33417f98b04682c329b5e9baaa1
   m_configObjects: {}

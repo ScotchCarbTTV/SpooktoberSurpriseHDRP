@@ -12,6 +12,11 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] MeshRenderer mRenderer;
 
+    [SerializeField] float lifeTime = 5f;
+
+    private int damage;
+    public int Damage { get { return damage; } set { damage = value; } }
+    
     public void SetDir(Vector3 trav)
     {
         travelDir = trav;
@@ -29,7 +34,19 @@ public class Bullet : MonoBehaviour
     {
         rbody.useGravity = false;
         rbody.velocity = travelDir * bulletSpeed;
-        
+
+    }
+
+    private void Update()
+    {
+        if(lifeTime > 0)
+        {
+            lifeTime -= Time.deltaTime;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void RendererON()

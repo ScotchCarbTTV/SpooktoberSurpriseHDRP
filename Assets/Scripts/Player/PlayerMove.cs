@@ -24,11 +24,13 @@ public class PlayerMove : MonoBehaviour
 
     public static PlayerMove Instance;
 
+    Vector3 vel = Vector3.zero;
+
     private void Awake()
     {
         if(!TryGetComponent<Rigidbody>(out rbody))
         {
-            Debug.LogError("Need a rigidbody attached");
+            Debug.Log("Kill yourself");
         }
     }
 
@@ -48,9 +50,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         //player press W go forward huuurrrrr
-        PlayerMoveInput();
-
-                           
+        PlayerMoveInput();                          
     }
 
     private void PlayerMoveInput()
@@ -64,14 +64,18 @@ public class PlayerMove : MonoBehaviour
 
         if (grounded)
         {
+           vel = moveDir;
+
             if (Input.GetButtonDown("Jump"))
             {
                 rbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             }
 
-            if (moveDir.x != 0 || moveDir.z != 0)
+            if (vel.x != 0 || vel.z != 0)
             {
-                rbody.velocity = Vector3.Lerp(rbody.velocity, moveDir * moveSpeed, Time.deltaTime * accelForce);
+                //rbody.velocity = Vector3.Lerp(rbody.velocity, moveDir * moveSpeed, Time.deltaTime * accelForce);
+
+                transform.position += vel * Time.deltaTime * accelForce;
             }
             else
             {
@@ -81,6 +85,8 @@ public class PlayerMove : MonoBehaviour
         else
         {
             rbody.velocity = Vector3.Lerp(rbody.velocity, new Vector3(0, fallSpeed, 0), decelSpeed * 0.25f * Time.deltaTime);
+            vel = Vector3.Lerp(vel, Vector3.zero, decelSpeed * Time.deltaTime);
+            transform.position += vel * Time.deltaTime * accelForce;
         }
 
     }

@@ -8,9 +8,13 @@ public class Interaction : MonoBehaviour
 
     private bool canInteract = true;
 
+    int lMask = 1 << 10;
+    
+
     // Start is called before the first frame update
     void Start()
     {
+        lMask = ~lMask;
         InvokeRepeating("InteractDisplayToggler", 0.25f, 0.25f);
     }
 
@@ -26,7 +30,7 @@ public class Interaction : MonoBehaviour
                 RaycastHit hit;
 
                 //raycast from camera straight ahead 
-                if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactionDistance))
+                if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactionDistance, lMask))
                 {
                     if(hit.collider.TryGetComponent(out IInteraction interaction))
                     {
@@ -35,22 +39,14 @@ public class Interaction : MonoBehaviour
                 }
 
                 //if it hits something with the IInteraciton then call interaction
-            }
-
-            
-
+            }  
         }
-
-        
-
     }
 
     private void InteractDisplayToggler()
     {
         RaycastHit hit;
-        int lMask = 1 << 10;
-
-        lMask = ~lMask;
+        
 
         //raycast from camera straight ahead 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactionDistance, lMask))

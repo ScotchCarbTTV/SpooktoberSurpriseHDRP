@@ -34,6 +34,9 @@ public class EnemyAI : MonoBehaviour
     public StateMachine StateMachine { get; private set; }
 
 
+    [SerializeField] int enemyHealth = 40;
+    [SerializeField] int enemyHealthMax = 40;
+
 
     //DEBUGBOOL
 
@@ -77,7 +80,18 @@ public class EnemyAI : MonoBehaviour
                 StateMachine.SetState(new EnemyDead(this));
             }            
         }
+    }
 
+    public void TakeDamage(int damage)
+    {
+        enemyHealth -= damage;
+
+        if(enemyHealth <= 0)
+        {
+            Die();
+        }
+
+        //maybe do a little flinching uwu
     }
 
     public void Die()
@@ -121,10 +135,8 @@ public class EnemyAI : MonoBehaviour
                         else
                         {
                             return false;
-                        }
-                        
-                    }
-                    
+                        }                        
+                    }                    
                 }
             }
         }
@@ -139,7 +151,9 @@ public class EnemyAI : MonoBehaviour
 
     public void Respawn()
     {
+        enemyHealth = enemyHealthMax;
         StateMachine.SetState(new EnemyIdle(this));
+        
     }
 
     public abstract class EnemyState : IState
@@ -186,7 +200,7 @@ public class EnemyAI : MonoBehaviour
 
         public override void OnEnter()
         {
-            Debug.Log("Entering Idle");
+            //Debug.Log("Entering Idle");
 
             Instance.agent.isStopped = true;            
 
@@ -277,7 +291,7 @@ public class EnemyAI : MonoBehaviour
 
         public override void OnEnter()
         {
-            Debug.Log("Entering Patrol");
+            //Debug.Log("Entering Patrol");
             //set agent to moving
             Instance.agent.isStopped = false;
 

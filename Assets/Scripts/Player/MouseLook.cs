@@ -13,6 +13,8 @@ public class MouseLook : MonoBehaviour
     //public bool to allow us to turn mouse look on and off
     public bool lookEnabled = true;
 
+    [SerializeField] float lookSpeed = 3;
+    private Vector2 rotation = Vector2.zero;
 
     private Transform character; //will store the transform info for the player character
     private Vector2 mouseDir; //will store mouse inputs
@@ -42,20 +44,16 @@ public class MouseLook : MonoBehaviour
         CursorToggle = false;
     }
 
+
     void Update()
     {
         if (lookEnabled == true)
         {
-            mouseDir = new Vector2(Input.GetAxisRaw("Mouse X") * sensitivity, Input.GetAxisRaw("Mouse Y") * sensitivity); //will take the mouse directions of x and y and store them in the vector 2
-                                                                                                                          //then it multiplies the input by the sensitivity.
-
-            //calculate the smoothing
-            smoothing = Vector2.Lerp(smoothing, mouseDir, 1 / drag); //lerp is linear interpolation - will go from Vector A to Vector B within Vector T
-            result += smoothing; // will store smoothing as result
-            result.y = Mathf.Clamp(result.y, -80, 80); //will prevent the player from looking too far up or down and inverting themselves (disorienting)
-
-            transform.localRotation = Quaternion.AngleAxis(-result.y, Vector3.right);
-            character.rotation = Quaternion.AngleAxis(result.x, character.transform.up);
+            rotation.y += Input.GetAxis("Mouse X");
+            rotation.x += -Input.GetAxis("Mouse Y");
+            rotation.x = Mathf.Clamp(rotation.x, -15f, 15f);
+            character.transform.eulerAngles = new Vector2(0, rotation.y) * lookSpeed;
+            transform.localRotation = Quaternion.Euler(rotation.x * lookSpeed, 0, 0);
         }
 
         /*
