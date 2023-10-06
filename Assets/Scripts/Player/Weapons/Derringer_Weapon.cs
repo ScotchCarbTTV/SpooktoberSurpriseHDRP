@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Derringer_Weapon : Weapon
 {
-    public Derringer_Weapon(int _ammoMax, int _magazineMax, int _weaponDamage, string _ammoID)
+    public Derringer_Weapon(int _ammoMax, int _magazineMax, int _weaponDamage, string _ammoID, string _name)
     {
         ammoMax = _ammoMax;
         magazineMax = _magazineMax;
@@ -14,24 +14,12 @@ public class Derringer_Weapon : Weapon
         magazineCurrent = magazineMax;
         ammoCurrent = ammoMax;
 
+        gunName = _name;
+
         EventManager.addAmmoEvent += AddAmmo;
     }
 
-    private void OnEnable()
-    {
-        
-    }
-
-    void Start()
-    {
-        //EventManager.keyAquiredEvent += AddAmmo;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     public override void Reload()
     {
         //i need more boolets
@@ -75,7 +63,7 @@ public class Derringer_Weapon : Weapon
             }
         }
     }
-    private void OnDestroy()
+    public override void Unsubscribe()
     {
         EventManager.addAmmoEvent -= AddAmmo;
     }

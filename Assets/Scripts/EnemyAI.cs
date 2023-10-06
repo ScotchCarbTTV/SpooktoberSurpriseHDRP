@@ -29,7 +29,7 @@ public class EnemyAI : MonoBehaviour
 
     private WayPointNode currentNode;
 
-    private bool chasing = false;
+    //private bool chasing = false;
 
     public StateMachine StateMachine { get; private set; }
 
@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour
         //set the initial state
         StateMachine.SetState(new EnemyIdle(this));
 
-        chasing = false;
+        //chasing = false;
 
         Invoke("RegisterSelf", 1.5f);
     }

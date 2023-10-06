@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-
     //player speed variable
-    [SerializeField] float moveSpeed = 5f;
+    //[SerializeField] float moveSpeed = 5f;
     [SerializeField] float accelForce = 5f;
 
     [SerializeField] float decelSpeed = 3f;
@@ -31,6 +30,8 @@ public class PlayerMove : MonoBehaviour
     private Vector3 startPos;
 
     [SerializeField] float zKillLimit;
+
+    int lMask = 1 << 32;
 
     private void OnEnable()
     {
@@ -63,7 +64,8 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         //player press W go forward huuurrrrr
-        PlayerMoveInput();                          
+        PlayerMoveInput();
+        Sprint();
     }
 
     private void PlayerMoveInput()
@@ -77,7 +79,7 @@ public class PlayerMove : MonoBehaviour
 
         //use raycast to check if the player is trying to move through a solid object then block their movement
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, moveDir, out hit, wallDetect, 100, QueryTriggerInteraction.Ignore))
+        if(Physics.Raycast(transform.position, moveDir, out hit, wallDetect, lMask, QueryTriggerInteraction.Ignore))
         {
             moveDir = Vector3.zero;
             vel = moveDir;
@@ -122,6 +124,18 @@ public class PlayerMove : MonoBehaviour
         {
             //Debug.LogError("mname jeff");
             transform.position = startPos;
+        }
+    }
+
+    private void Sprint()
+    {
+        if (Input.GetButtonDown("sprint"))
+        {
+            accelForce *= 3f;
+        }
+        else if (Input.GetButtonUp("sprint"))
+        {
+            accelForce /= 3f;
         }
     }
 

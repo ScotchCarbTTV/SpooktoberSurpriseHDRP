@@ -50,6 +50,9 @@ public class EventManager : MonoBehaviour
     public delegate void SPAWNDEBUGHITMARKER(Vector3 hit);
     public static SPAWNDEBUGHITMARKER SPAWNDEBUGHITMARKEREVENT;
 
+    public delegate void GainHealth(int health);
+    public static GainHealth gainHealthEvent;
+
     
 
 }

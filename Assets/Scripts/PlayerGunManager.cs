@@ -18,11 +18,16 @@ public class PlayerGunManager : MonoBehaviour
 
     private int equippedWeapon = 0;
 
+
+    int lMask = 1 << 32;
+
     // Start is called before the first frame update
     void Start()
-    {
-        weaponBelt.Add(new Automag_Weapon(25, 10, 10, "ammo_automag"));
-        weaponBelt.Add(new Derringer_Weapon(10, 4, 20, "ammo_derringer"));
+    {      
+        weaponBelt.Add(new Automag_Weapon(25, 10, 10, "ammo_automag", "Automag"));
+        //weaponBelt[0].name = "Automag";
+        weaponBelt.Add(new Derringer_Weapon(10, 4, 20, "ammo_derringer", "Derringer"));
+        //weaponBelt[1].name = "Derringer";
         //InvokeRepeating("FindAimSpot", 0.3f, 0.3f);
     }
 
@@ -31,6 +36,7 @@ public class PlayerGunManager : MonoBehaviour
     {
         FindAimSpot();
         Shoot();
+        SwitchWeapon();
     }
 
     private void Shoot()
@@ -44,7 +50,7 @@ public class PlayerGunManager : MonoBehaviour
                 //shoot a bullet
                 RaycastHit hit;
                 
-                if(Physics.SphereCast(Camera.main.transform.position, 0.3f, Camera.main.transform.forward, out hit, 30f))
+                if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 30f, lMask, QueryTriggerInteraction.Ignore))
                 {
                     //Debug.Log($"Hit {hit.collider.name}");
                     if (hit.collider.TryGetComponent<EnemyAI>(out EnemyAI enemy))
@@ -88,9 +94,34 @@ public class PlayerGunManager : MonoBehaviour
         }
         
     }
+
+    private void SwitchWeapon()
+    {
+        if (Input.GetButtonDown("weapon1"))
+        {
+            
+            equippedWeapon = 0;
+            Debug.Log($"Equipped weapon is now {weaponBelt[equippedWeapon].gunName}");
+        }
+        else if (Input.GetButtonDown("weapon2"))
+        {
+            
+            equippedWeapon = 1;
+            Debug.Log($"Equipped weapon is now {weaponBelt[equippedWeapon].gunName}");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        foreach(Weapon wepon in weaponBelt)
+        {
+            wepon.Unsubscribe();
+        }
+    }
+
 }
 
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon
 {
     public int ammoMax;
 
@@ -104,6 +135,8 @@ public abstract class Weapon : MonoBehaviour
 
     public string ammoID;
 
+    public string gunName;
+
     public virtual int Shoot()
     {
         //play bang bang sound
@@ -114,4 +147,6 @@ public abstract class Weapon : MonoBehaviour
         return weaponDamage;
     }
     public virtual void Reload() { }
+
+    public virtual void Unsubscribe() { }
 }
