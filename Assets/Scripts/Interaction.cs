@@ -70,6 +70,5 @@ public class Interaction : MonoBehaviour
 
 public interface IInteraction
 {
-    void Activate();
-   
+    void Activate();   
 }

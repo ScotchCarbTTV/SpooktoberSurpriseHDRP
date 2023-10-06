@@ -11,7 +11,7 @@ public class EventManager : MonoBehaviour
     {
         if(Instance == null)
         {
-            Instance= this;
+            Instance = this;
         }
         else
         {
@@ -19,6 +19,8 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public delegate void AddAmmo(string ammoID);
+    public static AddAmmo addAmmoEvent;
 
     //event for a key being acquired
     public delegate void KeyAquired(string keyID);
@@ -44,9 +46,10 @@ public class EventManager : MonoBehaviour
     public delegate void ToggleInteractPrompt(bool toggle);
     public static ToggleInteractPrompt toggleInteractPromptEvent;
 
-
     //DEBUGHITMARK spawning event
     public delegate void SPAWNDEBUGHITMARKER(Vector3 hit);
     public static SPAWNDEBUGHITMARKER SPAWNDEBUGHITMARKEREVENT;
+
+    
 
 }

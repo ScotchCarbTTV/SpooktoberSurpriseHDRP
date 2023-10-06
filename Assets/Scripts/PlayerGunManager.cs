@@ -10,6 +10,8 @@ public class PlayerGunManager : MonoBehaviour
 
     [SerializeField] Transform cameraDir;
 
+    [SerializeField] GameObject prefabBlood;
+
     Vector3 aimSpot = new Vector3();
 
     [SerializeField] List<Weapon> weaponBelt = new List<Weapon>();
@@ -19,8 +21,8 @@ public class PlayerGunManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        weaponBelt.Add(new Automag_Weapon(25, 10, 10));
-        weaponBelt.Add(new Derringer_Weapon(10, 4, 20));
+        weaponBelt.Add(new Automag_Weapon(25, 10, 10, "ammo_automag"));
+        weaponBelt.Add(new Derringer_Weapon(10, 4, 20, "ammo_derringer"));
         //InvokeRepeating("FindAimSpot", 0.3f, 0.3f);
     }
 
@@ -38,18 +40,23 @@ public class PlayerGunManager : MonoBehaviour
             //does the gun have any ammo?
             if(weaponBelt[equippedWeapon].magazineCurrent > 0)
             {
-                Debug.Log("You have enough bullets");
+                //Debug.Log("You have enough bullets");
                 //shoot a bullet
                 RaycastHit hit;
                 
-                if(Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 30f))
+                if(Physics.SphereCast(Camera.main.transform.position, 0.3f, Camera.main.transform.forward, out hit, 30f))
                 {
-                    Debug.Log($"Hit {hit.collider.name}");
+                    //Debug.Log($"Hit {hit.collider.name}");
                     if (hit.collider.TryGetComponent<EnemyAI>(out EnemyAI enemy))
                     {
+                        //instantiate a particle effect of blood where the hit was
+                      
+
+                        Instantiate(prefabBlood, hit.point, Quaternion.Euler(-transform.forward));
+
                         //do damage to the enemy
                         enemy.TakeDamage(weaponBelt[equippedWeapon].weaponDamage);
-                        Debug.Log($"Hit {hit.collider.name} for {weaponBelt[equippedWeapon].weaponDamage}");
+                        //Debug.Log($"Hit {hit.collider.name} for {weaponBelt[equippedWeapon].weaponDamage}");
                     }
                 }
 
@@ -64,7 +71,7 @@ public class PlayerGunManager : MonoBehaviour
             else
             {
                 //i need more boolet
-                Debug.Log("i need more boolet");
+                //Debug.Log("i need more boolet");
 
             }                      
         }
@@ -94,6 +101,8 @@ public abstract class Weapon : MonoBehaviour
     public int magazineCurrent;
 
     public int weaponDamage;
+
+    public string ammoID;
 
     public virtual int Shoot()
     {

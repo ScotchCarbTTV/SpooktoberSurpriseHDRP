@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class Derringer_Weapon : Weapon
 {
-    public Derringer_Weapon(int _ammoMax, int _magazineMax, int _weaponDamage)
+    public Derringer_Weapon(int _ammoMax, int _magazineMax, int _weaponDamage, string _ammoID)
     {
         ammoMax = _ammoMax;
         magazineMax = _magazineMax;
         weaponDamage = _weaponDamage;
+        ammoID = _ammoID;
 
         magazineCurrent = magazineMax;
         ammoCurrent = ammoMax;
+
+        EventManager.addAmmoEvent += AddAmmo;
+    }
+
+    private void OnEnable()
+    {
+        
     }
 
     void Start()
     {
-        
+        //EventManager.keyAquiredEvent += AddAmmo;
     }
 
     // Update is called once per frame
@@ -53,5 +61,22 @@ public class Derringer_Weapon : Weapon
                 ammoCurrent -= ammoCurrent;
             }
         }
+    }
+
+    private void AddAmmo(string _ammoID)
+    {
+        if (_ammoID == ammoID)
+        {
+            Debug.Log($"Received more boolet for {ammoID}");
+            ammoCurrent += ammoMax / 4;
+            if (ammoCurrent > ammoMax)
+            {
+                ammoCurrent = ammoMax;
+            }
+        }
+    }
+    private void OnDestroy()
+    {
+        EventManager.addAmmoEvent -= AddAmmo;
     }
 }

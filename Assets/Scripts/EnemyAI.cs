@@ -238,7 +238,7 @@ public class EnemyAI : MonoBehaviour
         
         public override void OnEnter()
         {
-            Debug.Log("Entering Chase");
+            //Debug.Log("Entering Chase");
 
             //set agent to moving
             Instance.agent.isStopped = false;
@@ -266,7 +266,7 @@ public class EnemyAI : MonoBehaviour
                 //stop movement
                 Instance.agent.isStopped = true;
                 //make an attack
-                Debug.Log("Attack!");
+                //Debug.Log("Attack!");
                 
             }
             else
