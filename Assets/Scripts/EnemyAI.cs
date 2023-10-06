@@ -29,7 +29,7 @@ public class EnemyAI : MonoBehaviour
 
     private WayPointNode currentNode;
 
-    private bool chasing;
+    private bool chasing = false;
 
     public StateMachine StateMachine { get; private set; }
 

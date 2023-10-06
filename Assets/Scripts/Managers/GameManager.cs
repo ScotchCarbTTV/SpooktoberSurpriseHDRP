@@ -5,13 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    //
-
     // Start is called before the first frame update
+
+    public static GameManager Instance { get; private set; }
 
     private void OnEnable()
     {
         //LoadBaseScenes();
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else Debug.LogError("Kill yourslef, you have too many game manager scriupts in the scene idiot");
     }
 
     void Start()
@@ -24,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
 
     private void LoadBaseScenes()
     {

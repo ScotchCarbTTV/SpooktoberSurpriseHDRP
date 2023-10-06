@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Derringer_Weapon : Weapon
 {
-
     public Derringer_Weapon(int _ammoMax, int _magazineMax, int _weaponDamage)
     {
         ammoMax = _ammoMax;

@@ -7,6 +7,8 @@ public class IDoor : MonoBehaviour, IInteraction
 
     //is this a locked door bool
     [SerializeField] bool lockedDoor;
+    [SerializeField] bool oneWayDoor;
+    
     [SerializeField] string lockID;
 
     bool open = false;
@@ -84,6 +86,18 @@ public class IDoor : MonoBehaviour, IInteraction
             Debug.Log($"You need the {lockID} key");
             //animC.Play("Base Layer.DoorOpen");
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.TryGetComponent<PlayerMove>(out PlayerMove pMove))
+        {
+            if (oneWayDoor)
+            {
+                hasKey = true;
+            }
+        }
+        
     }
 
     private void OnDestroy()
