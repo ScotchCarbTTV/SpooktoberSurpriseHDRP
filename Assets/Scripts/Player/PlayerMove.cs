@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-
     //player speed variable
-    [SerializeField] float moveSpeed = 5f;
+    //[SerializeField] float moveSpeed = 5f;
     [SerializeField] float accelForce = 5f;
 
     [SerializeField] float decelSpeed = 3f;
@@ -26,6 +25,19 @@ public class PlayerMove : MonoBehaviour
 
     Vector3 vel = Vector3.zero;
 
+    [SerializeField] float wallDetect;
+
+    private Vector3 startPos;
+
+    [SerializeField] float zKillLimit;
+
+    int lMask = 1 << 32;
+
+    private void OnEnable()
+    {
+        SetStartPos();
+    }
+
     private void Awake()
     {
         if(!TryGetComponent<Rigidbody>(out rbody))
@@ -44,13 +56,16 @@ public class PlayerMove : MonoBehaviour
         {
             Debug.LogError("Only one PlayerMove in the scene, dummy");
         }
+
+        InvokeRepeating("ZKill", 0.5f, 0.5f);
     }
 
 
     void Update()
     {
         //player press W go forward huuurrrrr
-        PlayerMoveInput();                          
+        PlayerMoveInput();
+        Sprint();
     }
 
     private void PlayerMoveInput()
@@ -61,6 +76,14 @@ public class PlayerMove : MonoBehaviour
 
         moveDir += transform.forward.normalized * input.z;
         moveDir += transform.right.normalized * input.x;
+
+        //use raycast to check if the player is trying to move through a solid object then block their movement
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, moveDir, out hit, wallDetect, lMask, QueryTriggerInteraction.Ignore))
+        {
+            moveDir = Vector3.zero;
+            vel = moveDir;
+        }
 
         if (grounded)
         {
@@ -77,10 +100,7 @@ public class PlayerMove : MonoBehaviour
 
                 transform.position += vel * Time.deltaTime * accelForce;
             }
-            else
-            {
-                rbody.velocity = Vector3.Lerp(rbody.velocity, new Vector3(0, 0, 0), decelSpeed * Time.deltaTime);
-            }
+            
         }
         else
         {
@@ -89,6 +109,34 @@ public class PlayerMove : MonoBehaviour
             transform.position += vel * Time.deltaTime * accelForce;
         }
 
+    }
+
+
+    public void SetStartPos()
+    {
+        startPos = transform.position;
+    }
+
+    private void ZKill()
+    {
+        //Debug.LogError("peak fuck ur feelings jeff");
+        if (transform.position.y < zKillLimit)
+        {
+            //Debug.LogError("mname jeff");
+            transform.position = startPos;
+        }
+    }
+
+    private void Sprint()
+    {
+        if (Input.GetButtonDown("sprint"))
+        {
+            accelForce *= 3f;
+        }
+        else if (Input.GetButtonUp("sprint"))
+        {
+            accelForce /= 3f;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

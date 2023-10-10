@@ -29,7 +29,7 @@ public class EnemyAI : MonoBehaviour
 
     private WayPointNode currentNode;
 
-    private bool chasing;
+    //private bool chasing = false;
 
     public StateMachine StateMachine { get; private set; }
 
@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour
         //set the initial state
         StateMachine.SetState(new EnemyIdle(this));
 
-        chasing = false;
+        //chasing = false;
 
         Invoke("RegisterSelf", 1.5f);
     }
@@ -238,7 +238,7 @@ public class EnemyAI : MonoBehaviour
         
         public override void OnEnter()
         {
-            Debug.Log("Entering Chase");
+            //Debug.Log("Entering Chase");
 
             //set agent to moving
             Instance.agent.isStopped = false;
@@ -266,7 +266,7 @@ public class EnemyAI : MonoBehaviour
                 //stop movement
                 Instance.agent.isStopped = true;
                 //make an attack
-                Debug.Log("Attack!");
+                //Debug.Log("Attack!");
                 
             }
             else
