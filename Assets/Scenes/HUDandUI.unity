@@ -123,7 +123,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: f505e98972a27534ab7c495b41ece1d6, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 2c7de30e9db08084fb97c12e8e61c1db, type: 2}
 --- !u!1 &314738104
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,12 +422,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: e797a9e76ffe49f4685e14134d1b2e4a,
         type: 3}
+    - target: {fileID: 1745206739089738526, guid: 2054b6df69444cb4390f45bbf39f0215,
+        type: 3}
+      propertyPath: keyID
+      value: yellow
+      objectReference: {fileID: 0}
     - target: {fileID: 1745206739261150659, guid: 2054b6df69444cb4390f45bbf39f0215,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 08eb03b85dd461b4a8e310746b651a1f,
         type: 3}
+    - target: {fileID: 1745206739261150661, guid: 2054b6df69444cb4390f45bbf39f0215,
+        type: 3}
+      propertyPath: keyID
+      value: green
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745206739419415090, guid: 2054b6df69444cb4390f45bbf39f0215,
+        type: 3}
+      propertyPath: keyID
+      value: red
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1745206737631480253, guid: 2054b6df69444cb4390f45bbf39f0215, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2054b6df69444cb4390f45bbf39f0215, type: 3}

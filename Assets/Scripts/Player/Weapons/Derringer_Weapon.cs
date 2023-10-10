@@ -4,27 +4,22 @@ using UnityEngine;
 
 public class Derringer_Weapon : Weapon
 {
-
-    public Derringer_Weapon(int _ammoMax, int _magazineMax, int _weaponDamage)
+    public Derringer_Weapon(int _ammoMax, int _magazineMax, int _weaponDamage, string _ammoID, string _name)
     {
         ammoMax = _ammoMax;
         magazineMax = _magazineMax;
         weaponDamage = _weaponDamage;
+        ammoID = _ammoID;
 
         magazineCurrent = magazineMax;
         ammoCurrent = ammoMax;
+
+        gunName = _name;
+
+        EventManager.addAmmoEvent += AddAmmo;
     }
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     public override void Reload()
     {
         //i need more boolets
@@ -54,5 +49,22 @@ public class Derringer_Weapon : Weapon
                 ammoCurrent -= ammoCurrent;
             }
         }
+    }
+
+    private void AddAmmo(string _ammoID)
+    {
+        if (_ammoID == ammoID)
+        {
+            Debug.Log($"Received more boolet for {ammoID}");
+            ammoCurrent += ammoMax / 4;
+            if (ammoCurrent > ammoMax)
+            {
+                ammoCurrent = ammoMax;
+            }
+        }
+    }
+    public override void Unsubscribe()
+    {
+        EventManager.addAmmoEvent -= AddAmmo;
     }
 }

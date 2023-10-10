@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 2170.042, g: 2282.5195, b: 3336.121, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -236,7 +236,8 @@ MonoBehaviour:
     type: 3}
   barrelEnd: {fileID: 437129479}
   cameraDir: {fileID: 1823688467}
-  weaponBelt: []
+  prefabBlood: {fileID: 1079477068804627615, guid: 877f4dfe3ae3dd44c88beb63ed0ecc6b,
+    type: 3}
 --- !u!23 &386511981
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -732,13 +733,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba87241d0ee2e74aa81a9d45d5d4742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   accelForce: 5
-  decelSpeed: 0.99
+  decelSpeed: 0.5
   maxSpeed: 10
   jumpForce: 5
   jumpAccelTime: 2
-  fallSpeed: 0
+  fallSpeed: 1.5
+  wallDetect: 1
+  zKillLimit: -50
 --- !u!54 &2033446846
 Rigidbody:
   m_ObjectHideFlags: 0
