@@ -18,8 +18,8 @@ MonoBehaviour:
     type: 2}
   m_RenderingPathDefaultCameraFrameSettings:
     bitDatas:
-      data1: 72127754442637133
-      data2: 13763000475202813976
+      data1: 73253654349479757
+      data2: 13799031436885295128
     lodBias: 1
     lodBiasMode: 0
     lodBiasQualityLevel: 0
@@ -29,6 +29,7 @@ MonoBehaviour:
     sssQualityMode: 0
     sssQualityLevel: 2
     sssCustomSampleBudget: 20
+    sssCustomDownsampleSteps: 0
     msaaMode: 1
     materialQuality: 0
   m_RenderingPathDefaultBakedOrCustomReflectionFrameSettings:
@@ -44,6 +45,7 @@ MonoBehaviour:
     sssQualityMode: 0
     sssQualityLevel: 0
     sssCustomSampleBudget: 20
+    sssCustomDownsampleSteps: 0
     msaaMode: 1
     materialQuality: 0
   m_RenderingPathDefaultRealtimeReflectionFrameSettings:
@@ -59,6 +61,7 @@ MonoBehaviour:
     sssQualityMode: 0
     sssQualityLevel: 0
     sssCustomSampleBudget: 20
+    sssCustomDownsampleSteps: 0
     msaaMode: 1
     materialQuality: 4
   m_RenderPipelineResources: {fileID: 11400000, guid: 3ce144cff5783da45aa5d4fdc2da14b7,
@@ -69,6 +72,24 @@ MonoBehaviour:
   afterPostProcessBlursCustomPostProcesses: []
   afterPostProcessCustomPostProcesses: []
   beforeTAACustomPostProcesses: []
+  defaultRenderingLayerMask: 257
+  renderingLayerNames:
+  - Light Layer default
+  - Light Layer 1
+  - Light Layer 2
+  - Light Layer 3
+  - Light Layer 4
+  - Light Layer 5
+  - Light Layer 6
+  - Light Layer 7
+  - Decal Layer default
+  - Decal Layer 1
+  - Decal Layer 2
+  - Decal Layer 3
+  - Decal Layer 4
+  - Decal Layer 5
+  - Decal Layer 6
+  - Decal Layer 7
   lightLayerName0: Light Layer default
   lightLayerName1: Light Layer 1
   lightLayerName2: Light Layer 2
@@ -85,17 +106,46 @@ MonoBehaviour:
   decalLayerName5: Decal Layer 5
   decalLayerName6: Decal Layer 6
   decalLayerName7: Decal Layer 7
-  shaderVariantLogLevel: 0
   lensAttenuationMode: 0
-  diffusionProfileSettingsList:
+  colorGradingSpace: 0
+  m_ObsoleteDiffusionProfileSettingsList:
   - {fileID: 11400000, guid: 48e911a1e337b44e2b85dbc65b47a594, type: 2}
   - {fileID: 11400000, guid: 879ffae44eefa4412bb327928f1a96dd, type: 2}
+  specularFade: 0
   rendererListCulling: 0
   DLSSProjectId: 000000
   useDLSSCustomProjectId: 0
   supportProbeVolumes: 1
-  supportRuntimeDebugDisplay: 0
+  autoRegisterDiffusionProfiles: 0
   apvScenesData:
+    m_ObsoleteSerializedBakingSets:
+    - profile: {fileID: 11400000, guid: 599abba58e1052d4497943960df93104, type: 2}
+      settings:
+        m_Version: 0
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: 0
+          maxHitsPerRay: 0
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 0
+      sceneGUIDs:
+      - 52f7a48f118e4d043b45fd83c3cf9c36
+      - d335b33417f98b04682c329b5e9baaa1
+      - e560599ae66aa3f40b2ba9609285bb29
+      - 9ab4ecb93c23b4648958c7b7591043c3
+      - 39018656c8965e64993c9d19618d0071
+      - 8124e5870f4fd4c779e7a5f994e84ad1
+      - 95d46adcb3e831047bab041b6e24b217
+      lightingScenarios: []
     serializedBounds:
     - sceneGUID: 52f7a48f118e4d043b45fd83c3cf9c36
       bounds:
@@ -116,126 +166,11 @@ MonoBehaviour:
       hasProbeVolumes: 0
     - sceneGUID: 95d46adcb3e831047bab041b6e24b217
       hasProbeVolumes: 0
-    serializedProfiles:
-    - sceneGUID: 52f7a48f118e4d043b45fd83c3cf9c36
-      profile: {fileID: 11400000, guid: 599abba58e1052d4497943960df93104, type: 2}
-    - sceneGUID: d335b33417f98b04682c329b5e9baaa1
-      profile: {fileID: 11400000, guid: 599abba58e1052d4497943960df93104, type: 2}
-    - sceneGUID: e560599ae66aa3f40b2ba9609285bb29
-      profile: {fileID: 11400000, guid: 599abba58e1052d4497943960df93104, type: 2}
-    - sceneGUID: 9ab4ecb93c23b4648958c7b7591043c3
-      profile: {fileID: 11400000, guid: 599abba58e1052d4497943960df93104, type: 2}
-    - sceneGUID: 39018656c8965e64993c9d19618d0071
-      profile: {fileID: 11400000, guid: 599abba58e1052d4497943960df93104, type: 2}
-    - sceneGUID: 8124e5870f4fd4c779e7a5f994e84ad1
-      profile: {fileID: 11400000, guid: 599abba58e1052d4497943960df93104, type: 2}
-    - sceneGUID: 95d46adcb3e831047bab041b6e24b217
-      profile: {fileID: 11400000, guid: 599abba58e1052d4497943960df93104, type: 2}
-    serializedBakeSettings:
-    - sceneGUID: 52f7a48f118e4d043b45fd83c3cf9c36
-      settings:
-        dilationSettings:
-          enableDilation: 1
-          dilationDistance: 1
-          dilationValidityThreshold: 0.25
-          dilationIterations: 1
-          squaredDistWeighting: 1
-        virtualOffsetSettings:
-          useVirtualOffset: 1
-          outOfGeoOffset: 0.01
-          searchMultiplier: 0.2
-    - sceneGUID: d335b33417f98b04682c329b5e9baaa1
-      settings:
-        dilationSettings:
-          enableDilation: 1
-          dilationDistance: 1
-          dilationValidityThreshold: 0.25
-          dilationIterations: 1
-          squaredDistWeighting: 1
-        virtualOffsetSettings:
-          useVirtualOffset: 1
-          outOfGeoOffset: 0.01
-          searchMultiplier: 0.2
-    - sceneGUID: e560599ae66aa3f40b2ba9609285bb29
-      settings:
-        dilationSettings:
-          enableDilation: 1
-          dilationDistance: 1
-          dilationValidityThreshold: 0.25
-          dilationIterations: 1
-          squaredDistWeighting: 1
-        virtualOffsetSettings:
-          useVirtualOffset: 1
-          outOfGeoOffset: 0.01
-          searchMultiplier: 0.2
-    - sceneGUID: 9ab4ecb93c23b4648958c7b7591043c3
-      settings:
-        dilationSettings:
-          enableDilation: 1
-          dilationDistance: 1
-          dilationValidityThreshold: 0.25
-          dilationIterations: 1
-          squaredDistWeighting: 1
-        virtualOffsetSettings:
-          useVirtualOffset: 1
-          outOfGeoOffset: 0.01
-          searchMultiplier: 0.2
-    - sceneGUID: 39018656c8965e64993c9d19618d0071
-      settings:
-        dilationSettings:
-          enableDilation: 1
-          dilationDistance: 1
-          dilationValidityThreshold: 0.25
-          dilationIterations: 1
-          squaredDistWeighting: 1
-        virtualOffsetSettings:
-          useVirtualOffset: 1
-          outOfGeoOffset: 0.01
-          searchMultiplier: 0.2
-    - sceneGUID: 8124e5870f4fd4c779e7a5f994e84ad1
-      settings:
-        dilationSettings:
-          enableDilation: 1
-          dilationDistance: 1
-          dilationValidityThreshold: 0.25
-          dilationIterations: 1
-          squaredDistWeighting: 1
-        virtualOffsetSettings:
-          useVirtualOffset: 1
-          outOfGeoOffset: 0.01
-          searchMultiplier: 0.2
-    - sceneGUID: 95d46adcb3e831047bab041b6e24b217
-      settings:
-        dilationSettings:
-          enableDilation: 1
-          dilationDistance: 1
-          dilationValidityThreshold: 0.25
-          dilationIterations: 1
-          squaredDistWeighting: 1
-        virtualOffsetSettings:
-          useVirtualOffset: 1
-          outOfGeoOffset: 0.01
-          searchMultiplier: 0.2
-    serializedBakingSets:
-    - name: Default
-      sceneGUIDs:
-      - 52f7a48f118e4d043b45fd83c3cf9c36
-      - d335b33417f98b04682c329b5e9baaa1
-      - e560599ae66aa3f40b2ba9609285bb29
-      - 9ab4ecb93c23b4648958c7b7591043c3
-      - 39018656c8965e64993c9d19618d0071
-      - 8124e5870f4fd4c779e7a5f994e84ad1
-      - 95d46adcb3e831047bab041b6e24b217
-      settings:
-        dilationSettings:
-          enableDilation: 1
-          dilationDistance: 1
-          dilationValidityThreshold: 0.25
-          dilationIterations: 1
-          squaredDistWeighting: 1
-        virtualOffsetSettings:
-          useVirtualOffset: 1
-          outOfGeoOffset: 0.01
-          searchMultiplier: 0.2
-      profile: {fileID: 11400000, guid: 599abba58e1052d4497943960df93104, type: 2}
-  m_Version: 3
+    bakingSets:
+    - {fileID: 11400000, guid: 599abba58e1052d4497943960df93104, type: 2}
+    m_LightingScenario: Default
+  m_Version: 8
+  m_ShaderVariantLogLevel: 0
+  m_SupportRuntimeDebugDisplay: 0
+  m_ExportShaderVariants: 1
+  m_StripDebugVariants: 1
