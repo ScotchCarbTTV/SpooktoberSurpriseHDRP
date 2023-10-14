@@ -33,24 +33,16 @@ public class WayPointNode : MonoBehaviour
     }
 
     private void Awake()
-    {
-        //scan for the nearby waypoints
-        Collider[] neigh = Physics.OverlapSphere(transform.position, checkRadius); 
-
-       //create list of neighbourinos
-       foreach(Collider n in neigh)
-        {
-            if(n.TryGetComponent<WayPointNode>(out WayPointNode node))
-            {
-                neighbours.Add(node);
-            }
-        }
+    {      
+        //FindNeighbours();
     }
 
     private void Start()
     {
+        InvokeRepeating("FindNeighbours", 2.1f, 5f);
+
         //deactivate the collider
-        scollider.enabled = false;
+        //scollider.enabled = false;
 
         //invoke the 'add self to waypointmanager list' event
         Invoke("RegisterWayPoint", 2f);
@@ -66,8 +58,40 @@ public class WayPointNode : MonoBehaviour
     {
         int randomInt = Random.Range(0, neighbours.Count);
 
-        WayPointNode node = neighbours[randomInt];
-        return node;
+        if (randomInt < neighbours.Count)
+        {
+            WayPointNode node = neighbours[randomInt];
+            return node;
+        }
+        else return null;
+    }
+
+    public void FindNeighbours()
+    {
+        //scan for the nearby waypoints
+        List<WayPointNode> neigh = WayPointManager.Instance.GetWayPointNodes();       
+
+        //create list of neighbourinos
+        foreach (WayPointNode n in neigh)
+        {
+                RaycastHit hit;
+                Vector3 dir = n.transform.position - transform.position;
+
+            int layerMask = 1 << 13;
+            layerMask = ~layerMask;
+
+                if (Physics.Raycast(transform.position, dir, out hit, Mathf.Infinity, layerMask))
+                {
+                    if (hit.collider.TryGetComponent<WayPointNode>(out WayPointNode node))
+                    {
+                        if (!neighbours.Contains(node))
+                        {
+                            neighbours.Add(node);
+                        }
+                    }
+                }
+            
+        }
     }
 
 }

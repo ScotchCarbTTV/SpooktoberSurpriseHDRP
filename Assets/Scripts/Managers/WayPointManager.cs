@@ -6,6 +6,7 @@ public class WayPointManager : MonoBehaviour
 {
     //maintain a list of the waypoints that exist
     [SerializeField] private List<WayPointNode> wayPoints = new List<WayPointNode>();
+    
 
     public static WayPointManager Instance;
 
@@ -51,6 +52,10 @@ public class WayPointManager : MonoBehaviour
         return nearestNode;
     }
     
+    public List<WayPointNode> GetWayPointNodes()
+    {
+        return wayPoints;
+    }
     
     private void AddWayPoint(WayPointNode node)
     {

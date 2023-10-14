@@ -318,8 +318,11 @@ public class EnemyAI : MonoBehaviour
                 if (patrolCounter > 0)
                 {
                     Instance.currentNode = Instance.currentNode.GetRandomNeighbour();
-                    Instance.agent.SetDestination(Instance.currentNode.transform.position);
-                    patrolCounter--;
+                    if (Instance.currentNode != null)
+                    {
+                        Instance.agent.SetDestination(Instance.currentNode.transform.position);
+                        patrolCounter--;
+                    }
                 }
                 else
                 {
