@@ -10,6 +10,8 @@ Material:
   m_Name: PipeMat
   m_Shader: {fileID: -6465566751694194690, guid: c4649b3dab621b04db0fa7514d7d5ba8,
     type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
   m_InvalidKeywords:
@@ -26,6 +28,7 @@ Material:
   - TransparentBackface
   - RayTracingPrepass
   - MOTIONVECTORS
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -89,7 +92,15 @@ Material:
         m_Texture: {fileID: 2800000, guid: 884947794cee4df4fa06d4f7b7e7df05, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_1fdf413cdcac4d8caa73d7071201fb00_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 884947794cee4df4fa06d4f7b7e7df05, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_9765aa696faa44089eda0841890359e6_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 733d79301ccb5224498a1c5b8fc4f0ba, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_9765aa696faa44089eda0841890359e6_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 733d79301ccb5224498a1c5b8fc4f0ba, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -97,7 +108,15 @@ Material:
         m_Texture: {fileID: 2800000, guid: 3ba6591172a204c4d816540a1978d4fe, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_ba499b3599d347a28d152845378f3099_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 3ba6591172a204c4d816540a1978d4fe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_ea0b26774a894844bf68b7024581fbdb_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d2aef9d6ab35d844cae0f5eb3b8434be, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_ea0b26774a894844bf68b7024581fbdb_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: d2aef9d6ab35d844cae0f5eb3b8434be, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -196,6 +215,7 @@ Material:
     - _IridescenceThickness: 1
     - _LinkDetailsWithBase: 1
     - _MaterialID: 1
+    - _MaterialTypeMask: 2
     - _Metallic: 0
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
@@ -226,10 +246,10 @@ Material:
     - _StencilRefGBuffer: 10
     - _StencilRefMV: 40
     - _StencilWriteMask: 6
-    - _StencilWriteMaskDepth: 8
+    - _StencilWriteMaskDepth: 9
     - _StencilWriteMaskDistortionVec: 4
-    - _StencilWriteMaskGBuffer: 14
-    - _StencilWriteMaskMV: 40
+    - _StencilWriteMaskGBuffer: 15
+    - _StencilWriteMaskMV: 41
     - _SubsurfaceMask: 1
     - _SupportDecals: 1
     - _SurfaceType: 0
@@ -283,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 12
+  version: 13
   hdPluginSubTargetMaterialVersions:
     m_Keys: []
     m_Values: 
